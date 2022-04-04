@@ -10,5 +10,7 @@
 
 ```bash
 # checker.sh
-wget https://raw.staticdn.net/6r6/maicai.ddxq.tools/main/checker.sh && bash checker.sh
+wget https://raw.staticdn.net/6r6/maicai.ddxq.tools/main/checker.sh 
+# 修改curl指令和bark-id然后保存
+bash checker.sh
 ```
