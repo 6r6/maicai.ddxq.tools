@@ -14,7 +14,7 @@ echo "正在检查是否有可用配送时段..."
 # API版本、地址不同的，则根据实际情况变更对应项目
 curl --location --request POST 'https://maicai.api.ddxq.mobi/order/getMultiReserveTime' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'ddmc-city-number: 0101' \
+--header 'ddmc-city-number: 填写对应的城市编号' \
 --header 'ddmc-build-version: 2.81.4' \
 --header 'ddmc-device-id: 填写设备ID' \
 --header 'ddmc-station-id: 填写对应的站点ID' \
@@ -29,7 +29,7 @@ curl --location --request POST 'https://maicai.api.ddxq.mobi/order/getMultiReser
 --header 'ddmc-uid: 填写你的UID' \
 --header 'Accept-Encoding: gzip,compress,br,deflate' \
 --header 'User-Agent: 填写你的UA' \
---header 'Referer: https://servicewechat.com/wx1e113254eda17715/421/page-frame.html' \
+--header 'Referer: 填写对应Refere' \
 --data-urlencode 'uid=填写提交的UID' \
 --data-urlencode 'longitude=填写经度' \
 --data-urlencode 'latitude=填写纬度' \
