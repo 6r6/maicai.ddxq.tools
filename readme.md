@@ -18,3 +18,17 @@ brew install jq
 bash checker.sh
 ```
 ---
+
+**CentOS 服务器+iOS使用**
+```shell
+yum install screen
+yum install jq
+wget https://raw.githubusercontent.com/6r6/maicai.ddxq.tools/main/checker.sh
+# 修改checker.sh内容，将抓包获得的项目、BarkID填充至对应位置
+# BarkID在安装应用、注册设备后获得 示例：https://api.day.app/这里是BarkID/
+# 挂载后台运行，避免会话关闭任务停止
+screen -S shopping 
+bash checker.sh
+# 查看后台会话
+screen -r shopping
+```
