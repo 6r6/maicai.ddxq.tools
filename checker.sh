@@ -8,24 +8,26 @@ while :; do
 
 echo "正在检查是否有可用配送时段..."
 
-# (*)请填充cURL命令,别忘记输出到tmp.json
+# (*)请填充cURL命令,2选1填充,别忘记输出到tmp.json
+# curl https://maicai.api.ddxq.mobi/order/getReserveTime > tmp.json
 # curl https://maicai.api.ddxq.mobi/order/getMultiReserveTime > tmp.json
 
 responseCheckCount=`cat tmp.json | grep -c 'station_id'`
 
 if [[ $responseCheckCount -ne 1 ]]; then
-    echo "😭抱歉 请检查cURL命令是否能获取到正确的数据"
+    cat tmp.json
+    echo "😭 抱歉 请检查cURL命令是否能获取到正确的数据"
     exit 1
 fi
 
-# api version: 9.49.0
+# try parse as getMultiReserveTime
 availableCount=`cat tmp.json | jq -r '.data[0]?.time[0].times[].disableType' | grep -c 0`
 
-# api version: 9.24.3
+# parse as getReserveTime
 availableCount=`cat tmp.json | jq -r '.data.time[0].times[].disableType' | grep -c 0`
 
 if [[ $availableCount -gt 0 ]]; then
-    echo "🎉恭喜 发现可用的配送时段 请尽快下单!"
+    echo "🎉 恭喜 发现可用的配送时段 请尽快下单!"
     curl "https://api.day.app/$barkId/叮咚买菜有可用配送时段请尽快下单/"
     exit 0
 fi
