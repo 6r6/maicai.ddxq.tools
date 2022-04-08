@@ -12,11 +12,19 @@ echo "正在检查是否有可用配送时段..."
 # curl https://maicai.api.ddxq.mobi/order/getMultiReserveTime > tmp.json
 
 responseCodeCheck=`cat tmp.json | jq -r '.code'`
+responseContentCheck=`cat tmp.json | grep -c 'station_id'`
 
 if [[ $responseCodeCheck -ne 0 ]]; then
     cat tmp.json
     echo "😭 抱歉 请检查cURL命令是否能获取到正确的数据"
     exit 1
+fi
+
+if [[ $responseContentCheck -ne 1 ]]; then
+    cat tmp.json
+    echo "😭 抱歉 接口拥挤 休眠5秒重试"
+    sleep 5
+    continue
 fi
 
 availableCount=`cat tmp.json | jq -r '.data[0].time[0].times[].disableType' | grep -c 0`
