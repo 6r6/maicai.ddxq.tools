@@ -2,7 +2,7 @@
 # 检查叮咚买菜是否有可配送时段,有则通过Bark推送
 
 # (*)请填充BarkId
-barkId=""
+barkId=''
 
 while :; do
 
@@ -16,8 +16,9 @@ responseContentCheck=`cat tmp.json | grep -c 'station_id'`
 
 if [[ $responseCodeCheck -ne 0 ]]; then
     cat tmp.json
-    echo "😭 抱歉 请检查cURL命令是否能获取到正确的数据"
-    exit 1
+    echo "😭 抱歉 请检查cURL命令是否能获取到正确的数据 休眠5秒重试"
+    sleep 5
+    continue
 fi
 
 if [[ $responseContentCheck -ne 1 ]]; then
